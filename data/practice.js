@@ -194,21 +194,62 @@ window.PRACTICE = [
   },
   {
     "part": "2부 수업과 평가 (교사)",
-    "title": "채점·피드백 보조",
-    "goal": "루브릭과 답안을 함께 주고, 기준별 근거 문장을 찾게 합니다.",
+    "title": "채점·피드백 보조 — 기준 한 요소씩",
+    "process": "grade",
+    "goal": "채점 기준표의 한 요소와 탐구계획서 4편을 주고, 점수와 근거 문장을 표로 받습니다.",
     "files": [
       {
-        "label": "루브릭 1장 + 번호로 바꾼 학생 답안 3편",
-        "href": ""
+        "label": "수행평가 채점 기준(가상).pdf",
+        "href": "materials/teacher-rubric.pdf",
+        "download": "교사 실습_수행평가 채점 기준(가상).pdf"
+      },
+      {
+        "label": "학생 제출물 4명(가상).zip — 탐구계획서·실험보고서·발표자료",
+        "href": "materials/teacher-student-work.zip",
+        "download": "교사 실습_학생 제출물 4명(가상).zip"
       }
     ],
     "prompts": [
+      "grade_rubric",
       "grade_feedback"
     ],
     "checks": [
-      "학생 이름은 번호·가명으로",
-      "같은 답안을 두 번 넣어 결과를 비교해 보기",
+      "채점 요소는 한 번에 하나씩 (3개를 한꺼번에 주면 근거가 흐려짐)",
+      "점수는 기준표에 있는 값 중에서만 고르게",
+      "\"그대로 인용\"한 문장이 정말 학생 글에 있는지 확인",
       "최종 점수는 교사"
+    ]
+  },
+  {
+    "part": "2부 수업과 평가 (교사)",
+    "title": "상담 녹음 → 누가기록",
+    "process": "counsel",
+    "goal": "상담을 STT로 받아 둔 글에서 기록에 남길 사실만 골라 500바이트 누가기록을 받습니다.",
+    "files": [
+      {
+        "label": "상담 STT 4명(가상).zip — 한글 파일",
+        "href": "materials/teacher-counseling-stt.zip",
+        "download": "교사 실습_상담 STT 4명(가상).zip"
+      },
+      {
+        "label": "기초조사(가상).xlsx — 행동특성 쓸 때 함께",
+        "href": "materials/teacher-basic-survey.xlsx",
+        "download": "교사 실습_기초조사(가상).xlsx"
+      },
+      {
+        "label": "나이스 바이트 계산기",
+        "href": "tools/neis-byte.html"
+      }
+    ],
+    "prompts": [
+      "counsel_record",
+      "record_trim"
+    ],
+    "checks": [
+      "\"기록에 넣기 어려운 내용은 빼 줘\" 한 줄이 핵심 — 무엇을 뺐는지도 보여 달라고 하기",
+      "학생이 말한 사실과 교사의 해석을 구분",
+      "바이트는 계산기로 한 번 더",
+      "실제 상담 녹음은 학생 이름을 번호로 바꾼 뒤에"
     ]
   },
   {
@@ -238,8 +279,14 @@ window.PRACTICE = [
     "goal": "관찰 메모로 초안을 받고, 바이트는 계산기로 재서 숫자로 줄이게 합니다.",
     "files": [
       {
-        "label": "생기부 기재요령 파일",
-        "href": ""
+        "label": "생기부 기재요령 요약.md",
+        "href": "materials/teacher-record-guidelines.md",
+        "download": "교사 실습_생기부 기재요령 요약.md"
+      },
+      {
+        "label": "발표 스크립트 STT(가상).xlsx — 관찰 메모 대신",
+        "href": "materials/teacher-presentation-stt.xlsx",
+        "download": "교사 실습_발표 스크립트 STT(가상).xlsx"
       },
       {
         "label": "나이스 바이트 계산기",
@@ -260,20 +307,48 @@ window.PRACTICE = [
   },
   {
     "part": "2부 수업과 평가 (교사)",
-    "title": "흩어진 자료를 학생별로 정리",
-    "goal": "형식이 제각각인 취합 엑셀을 한 표로 모으고 통계를 냅니다.",
+    "title": "제각각인 학생 명단 정리",
+    "process": "roster",
+    "goal": "형식이 엉망인 명단을 정리해 봅니다. 연락처가 든 실제 명단은 AI에 넣지 않고 엑셀 수식을 받습니다.",
     "files": [
       {
-        "label": "형식이 제각각인 취합 엑셀 (이름 대신 번호)",
-        "href": ""
+        "label": "학생 명단 정제 전(가상).xlsx",
+        "href": "materials/teacher-messy-roster.xlsx",
+        "download": "교사 실습_학생 명단 정제 전(가상).xlsx"
       }
     ],
     "prompts": [
+      "roster_clean",
+      "roster_formula",
       "data_merge"
     ],
     "checks": [
-      "이름 대신 번호로",
-      "AI의 평균·합계는 엑셀 수식으로 다시 확인"
+      "senGPT는 전화번호를 [PHONE_NUMBER]로 가림 — 연락처 정리는 수식으로",
+      "수식은 2~3행만 먼저 넣어 결과를 눈으로 확인",
+      "\"검수 결과\" 열을 만들어 달라고 하면 이상한 칸을 찾기 쉬움"
+    ]
+  },
+  {
+    "part": "2부 수업과 평가 (교사)",
+    "title": "물품 구입 품의 — 품목내역과 수문",
+    "process": "pumui",
+    "goal": "쇼핑몰 화면의 물품으로 품목내역 표와 수문을 쓰고, 금액은 코드로 계산하게 합니다.",
+    "files": [
+      {
+        "label": "물품 구입 자료.zip — 상품 화면 5장, 품목내역 양식, 수문 예시",
+        "href": "materials/teacher-purchase-materials.zip",
+        "download": "교사 실습_물품 구입 자료.zip"
+      }
+    ],
+    "prompts": [
+      "pumui_items",
+      "pumui_sumun"
+    ],
+    "checks": [
+      "금액·한글 금액은 \"코드로 계산\"",
+      "문서번호·날짜·장소는 AI가 지어낼 수 있음 — 빈칸으로 두라고 하기",
+      "AI가 \"틀린 곳 없음\"이라고 해도 품명 수량과 계산 수량을 직접 대조",
+      "실제 품의는 학교 양식과 최신 규정 확인"
     ]
   },
   {
