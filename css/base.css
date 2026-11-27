@@ -1,0 +1,45 @@
+/*
+ * base.css — 모든 페이지가 함께 쓰는 기본 스타일
+ * 원칙: 흑백, 단순하게. 그라데이션·그림자·이모지 장식 없음.
+ * 색은 아래 변수만 씁니다. 바꾸고 싶으면 여기만 고치세요.
+ */
+:root {
+  --ink: #111;          /* 본문 글자 */
+  --ink-2: #555;        /* 보조 글자 */
+  --ink-3: #8a8a8a;     /* 흐린 글자(쪽 번호 등) */
+  --line: #d9d9d9;      /* 얇은 선 */
+  --line-strong: #111;  /* 굵은 선 */
+  --paper: #fff;        /* 바탕 */
+  --tint: #f4f4f4;      /* 아주 옅은 회색 칸 */
+  --font: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  --mono: "D2Coding", "Consolas", "SFMono-Regular", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;          /* 한국어 낱말이 중간에 끊기지 않게 */
+  overflow-wrap: break-word;
+}
+
+a { color: inherit; }
+
+strong { font-weight: 700; }
+
+/* 복사 버튼: 슬라이드와 실습 페이지가 함께 씀 */
+.copy-btn {
+  font: inherit;
+  font-size: 13px;
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.copy-btn:hover { background: var(--ink); color: var(--paper); }
+.copy-btn.done { background: var(--ink); color: var(--paper); }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>실습 안내 — AI로 학교 업무 가볍게 (성수고등학교)</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <!--
+    넓은 화면: [왼쪽 목차] [가운데 카드 2열] [오른쪽 안전 원칙]
+    좁은 화면: 위에서 아래로 한 줄씩 쌓입니다 (css/pages.css의 .shell)
+  -->
+  <div class="shell">
+    <header class="shell-head page-head">
+      <div class="kicker">성수고등학교 · 2026. 11. 27.(금) 14:10–15:40</div>
+      <h1>실습 안내 — 프롬프트 모음</h1>
+      <p>프롬프트 오른쪽 [복사]를 눌러 senGPT에 붙여 넣으세요. [대괄호]는 내 업무에 맞게 바꿉니다. 모든 실습 자료는 연수용 가상 자료입니다.</p>
+      
+    </header>
+
+    <!-- 왼쪽: 목차(js/practice.js가 채움)와 바로가기 -->
+    <aside class="nav-col">
+      <div class="sticky">
+        <h4 class="col-title">목차</h4>
+        <nav id="toc" aria-label="실습 목차"></nav>
+        <h4 class="col-title">바로가기</h4>
+        <div class="quick">
+          <a href="index.html">처음으로</a>
+          <a href="slides.html">슬라이드</a>
+          <a href="tools/neis-byte.html">바이트 계산기</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 가운데: 실습 카드 -->
+    <main id="cards"></main>
+
+    <!-- 오른쪽: 늘 보이는 안전 원칙 (data/practice.js에서 place: 'aside'인 카드) -->
+    <aside class="info-col">
+      <div class="sticky">
+        <div id="aside"></div>
+        <button type="button" class="process-cta" data-process-open="" aria-controls="process">
+          <strong>[세부과정]</strong>
+          <span>senGPT에서 직접 해 본 화면 캡처와 예시 프롬프트</span>
+        </button>
+      </div>
+    </aside>
+
+    <footer class="shell-foot page-foot">
+      출처: senGPT 행정실 연수 실습 안내서, 연수1~3 실습자료, Notion 연수 페이지(신진과학기술고·광진중), 성수고 사전 설문.
+      프롬프트는 2026. 11. 27. senGPT(Claude Haiku 5.5·GPT-6 Luna)에서 직접 테스트했습니다.
+    </footer>
+  </div>
+
+  <!--
+    [세부과정] 패널: 오른쪽 가장자리 탭(또는 카드의 [세부과정] 버튼)을 누르면 오른쪽에서 나옵니다.
+    내용은 data/process.js, 여닫기는 js/practice.js가 맡습니다.
+  -->
+  <button type="button" class="process-tab" data-process-open="" aria-controls="process" aria-expanded="false">세부과정</button>
+  <div class="process-backdrop" data-process-close hidden></div>
+  <aside id="process" class="process" role="dialog" aria-modal="true" aria-labelledby="process-title" aria-hidden="true">
+    <header class="process-head">
+      <div>
+        <div class="kicker">senGPT에서 직접 해 본 기록 · 2026. 11. 27. · Claude Haiku 5.5 / GPT-6 Luna</div>
+        <h2 id="process-title">세부과정</h2>
+      </div>
+      <button type="button" class="process-close" data-process-close aria-label="세부과정 닫기">×</button>
+    </header>
+    <div class="process-tools">
+      <nav id="process-toc" aria-label="세부과정 목차"></nav>
+      <button type="button" class="process-expand">AI 답 모두 펼치기</button>
+    </div>
+    <div class="process-body" id="process-body"></div>
+  </aside>
+
+  <script src="data/prompts.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/process.js"></script>
+  <script src="js/practice.js"></script>
+</body>
+</html>

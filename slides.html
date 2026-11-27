@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI로 학교 업무 가볍게 — 성수고등학교 연수 (2026. 11. 27.)</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/deck.css">
+</head>
+<body>
+  <!-- 슬라이드는 js/deck.js가 data/slides.js를 읽어 이 안에 그립니다 -->
+  <main id="stage" aria-live="polite"></main>
+
+  <!-- 발표자 메모 (N 키) -->
+  <div id="notes"></div>
+
+  <div id="help">← → 넘기기 · N 메모 · F 전체 화면 · P 인쇄(PDF)</div>
+
+  <!-- 순서 중요: 데이터(prompts → slides)를 먼저, 그다음 그리는 코드 -->
+  <script src="data/prompts.js"></script>
+  <script src="data/slides.js"></script>
+  <script src="js/deck.js"></script>
+</body>
+</html>

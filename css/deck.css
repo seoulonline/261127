@@ -1,0 +1,115 @@
+/*
+ * deck.css — 슬라이드 화면 스타일
+ * 슬라이드는 1280×720(16:9) 크기로 그리고, 화면 크기에 맞춰 통째로 확대·축소합니다.
+ * 그래서 글자 크기는 px로 고정해도 어느 화면에서나 같은 비율로 보입니다.
+ */
+html, body { height: 100%; background: #e9e9e9; overflow: hidden; }
+
+/* 화면 가운데에 슬라이드를 놓는 틀 */
+#stage {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* 슬라이드 한 장 (기준 크기 1280×720) */
+.slide {
+  position: absolute;
+  width: 1280px; height: 720px;
+  background: var(--paper);
+  padding: 72px 96px 64px;
+  display: none;                 /* 현재 장만 보임 */
+  flex-direction: column;
+  transform-origin: center center;
+}
+.slide.active { display: flex; }
+
+/* 위쪽 작은 제목(kicker)과 큰 제목 */
+.kicker {
+  font-size: 18px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--ink-2);
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--line-strong);
+  margin-bottom: 28px;
+}
+.slide h1 { font-size: 46px; line-height: 1.25; margin: 0 0 32px; font-weight: 800; letter-spacing: -0.01em; }
+
+/* 쪽 번호 */
+.pageno { position: absolute; right: 48px; bottom: 28px; font-size: 14px; color: var(--ink-3); }
+
+/* ── title(표지) ── */
+.slide.t-title { justify-content: center; padding-left: 120px; }
+.slide.t-title h1 { font-size: 72px; margin-bottom: 18px; }
+.slide.t-title .subtitle { font-size: 30px; color: var(--ink-2); margin-bottom: 64px; }
+.slide.t-title .meta { border-top: 2px solid var(--line-strong); padding-top: 22px; font-size: 20px; line-height: 1.8; color: var(--ink-2); }
+
+/* ── bullets / steps ── */
+.bul { list-style: none; margin: 0; padding: 0; }
+.bul li { font-size: 28px; line-height: 1.5; padding: 14px 0 14px 28px; border-bottom: 1px solid var(--line); position: relative; }
+.bul li::before { content: ""; position: absolute; left: 0; top: 30px; width: 10px; height: 10px; background: var(--ink); }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps li { counter-increment: s; font-size: 28px; line-height: 1.5; padding: 16px 0 16px 64px; border-bottom: 1px solid var(--line); position: relative; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 14px; width: 40px; height: 40px; border: 2px solid var(--ink); font-weight: 700; font-size: 22px; display: flex; align-items: center; justify-content: center; }
+.aside { margin-top: auto; font-size: 20px; color: var(--ink-2); border-left: 4px solid var(--ink); padding: 6px 0 6px 16px; }
+
+/* ── timeline ── */
+.tl { display: grid; grid-template-columns: 220px 1fr; border-top: 2px solid var(--line-strong); }
+.tl > div { padding: 26px 0; border-bottom: 1px solid var(--line); }
+.tl .time { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tl .label { font-size: 30px; font-weight: 800; margin-bottom: 6px; }
+.tl .desc { font-size: 22px; color: var(--ink-2); line-height: 1.5; }
+
+/* ── stats ── */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--line-strong); border-bottom: 1px solid var(--line); }
+.stats > div { padding: 32px 20px 28px 0; border-right: 1px solid var(--line); }
+.stats > div:last-child { border-right: 0; }
+.stats .num { font-size: 96px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats .lab { font-size: 24px; margin-top: 14px; }
+.note { margin-top: 28px; font-size: 20px; color: var(--ink-2); }
+
+/* ── twocol ── */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.two h2 { font-size: 26px; margin: 0 0 8px; padding-bottom: 10px; border-bottom: 2px solid var(--line-strong); }
+.two ul { list-style: none; margin: 0; padding: 0; }
+.two li { font-size: 24px; line-height: 1.5; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.foot { margin-top: auto; font-size: 20px; line-height: 1.5; color: var(--ink); background: var(--tint); padding: 14px 18px; }
+
+/* ── table ── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 24px; }
+.tbl th { text-align: left; font-size: 20px; color: var(--ink-2); font-weight: 600; padding: 12px 16px 12px 0; border-bottom: 2px solid var(--line-strong); }
+.tbl td { padding: 20px 16px 20px 0; border-bottom: 1px solid var(--line); line-height: 1.4; vertical-align: top; }
+.tbl td:first-child { font-weight: 800; white-space: nowrap; }
+
+/* ── prompt(실습) ── */
+.slide.t-prompt h1 { font-size: 40px; margin-bottom: 22px; }
+.pgrid { display: grid; grid-template-columns: 1fr 340px; gap: 40px; flex: 1; min-height: 0; }
+.plist { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.pbox { border: 2px solid var(--line-strong); padding: 14px 18px; }
+.pbox .phead { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.pbox .ptext { font-size: 20px; line-height: 1.55; white-space: pre-wrap; }
+.files { font-size: 15px; color: var(--ink-2); line-height: 1.6; margin-bottom: 4px; }
+.side h3 { font-size: 18px; margin: 0 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--line-strong); }
+.side ul { margin: 0 0 18px; padding: 0; list-style: none; }
+.side li { font-size: 17px; line-height: 1.5; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.swap { font-size: 17px; line-height: 1.5; background: var(--tint); padding: 12px 14px; }
+
+/* ── 발표자 메모(N 키) ── */
+#notes {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: var(--ink); color: var(--paper);
+  font-size: 16px; line-height: 1.6;
+  padding: 14px 24px; display: none; z-index: 10;
+  max-height: 30vh; overflow: auto;
+}
+#notes.show { display: block; }
+
+/* ── 아래 도움말 ── */
+#help { position: fixed; left: 16px; bottom: 12px; font-size: 12px; color: #777; z-index: 5; }
+
+/* ── 인쇄(PDF로 저장): 슬라이드 한 장 = 한 쪽 ── */
+@page { size: 1280px 720px; margin: 0; }
+@media print {
+  html, body { height: auto; overflow: visible; background: #fff; }
+  #stage { position: static; display: block; }
+  .slide { position: relative; display: flex !important; transform: none !important; page-break-after: always; break-after: page; }
+  #notes, #help, .copy-btn { display: none !important; }
+}
